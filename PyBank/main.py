@@ -1,12 +1,9 @@
-# In this challenge, you are tasked with creating a Python script for analyzing the financial records of your company. 
-# You will give a set of financial data called budget_data.csv. The dataset is composed of two columns: Date and Profit/Losses. 
-# (Thankfully, your company has rather lax standards for accounting so the records are simple.)
 
 # modules
 import os
 import csv
 
-# set path
+# set file path
 csvpath = os.path.join("Resources","budgetdata.csv")
 
 # read in CSV
@@ -17,32 +14,45 @@ with open(csvpath) as csvfile:
     csv_header = next(csvreader)
     # print(csv_header)
 # define variables
-    old_month = 0
-    new_month = 0
+    PL_old = 0
+    PL_new = 0
     month_count = 0
     total_value = 0
-    PL_change_current = 0
-    PL_change_total = 0
- 
+    PLchange_current = 0
+    PLchange_total = 0
+    Greatest_Increase = -9999999999
+    Greatest_Decrease = 99999999999
+    Greatest_Increase_month = 0
+    Greatest_Decrease_month = 0
    # Read each row of data after the header
     for row in csvreader:
-        # new_value = old_value + int(row[1])
+    
         # read the value in each row
         month_count = month_count + 1
         total_value += int(row[1])
         # define average change over period of time
         if month_count == 1:
-            new_month = int(row[1])
-        old_month = new_month   
-        print(f"old month", old_month)
-        new_month = int(row[1])
-        print(f"new month",new_month)
+            PL_new = int(row[1])
+        PL_old = PL_new   
+        print(f"PL old", PL_old)
+        PL_new = int(row[1])
+        print(f"PL new",PL_new)
         # PL_change_old = PL_change_current
         # print(f"Profit change old", PL_change_old)
-        PL_change_current = new_month - old_month
-        print(f"profit change current", PL_change_current)
-        PL_change_total = PL_change_total + PL_change_current
-        print(f"profit change total", PL_change_total)
+        PLchange_current = PL_new - PL_old
+        print(f"profit change current", PLchange_current)
+        PLchange_total = PLchange_total + PLchange_current
+        print(f"profit change total", PLchange_total)
+
+        # Find greatest increase and decrease
+        if int(row[1]) > Greatest_Increase:
+            Greatest_Increase = int(row[1])
+            print(f'GreatestIncrease',Greatest_Increase)
+            Greatest_Increase_month = row
+        if int(row[1]) < Greatest_Decrease:
+            Greatest_Decrease = int(row[1])
+            Greatest_Decrease_month = row
+            print(f'GreatestIncrease',Greatest_Decrease)
 
 
 
@@ -51,17 +61,10 @@ print("Financial Analysis")
 print("------------------------------")
 print(f"Total Months: ", month_count)
 print("Total: $", total_value)
-print("Average Change: ",PL_change_total/(month_count-1))
-print("Greatest Increase: ")
-print("Greatest Decrease in Profits: ")
+print("Average Change: ",PLchange_total/(month_count-1))
+print("Greatest Increase: ",Greatest_Increase_month, Greatest_Increase)
+print("Greatest Decrease in Profits: ", Greatest_Decrease_month, Greatest_Decrease)
 
-# Your task is to create a Python script that analyzes the records to calculate each of the following:
-
-# 	•	The total number of months included in the dataset
-
-# 	•	The net total amount of "Profit/Losses" over the entire period
-
-# 	•	The average of the changes in "Profit/Losses" over the entire period
         
 # 	•	The greatest increase in profits (date and amount) over the entire period
 
