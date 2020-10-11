@@ -47,12 +47,12 @@ with open(csvpath) as csvfile:
         # Find greatest increase and decrease
         if int(row[1]) > Greatest_Increase:
             Greatest_Increase = int(row[1])
-            print(f'GreatestIncrease',Greatest_Increase)
+            # print(f'GreatestIncrease',Greatest_Increase)
             Greatest_Increase_month = row
         if int(row[1]) < Greatest_Decrease:
             Greatest_Decrease = int(row[1])
             Greatest_Decrease_month = row
-            print(f'GreatestIncrease',Greatest_Decrease)
+            # print(f'GreatestIncrease',Greatest_Decrease)
 
 
 
@@ -66,7 +66,5 @@ print("Greatest Increase: ",Greatest_Increase_month, Greatest_Increase)
 print("Greatest Decrease in Profits: ", Greatest_Decrease_month, Greatest_Decrease)
 
         
-# 	•	The greatest increase in profits (date and amount) over the entire period
 
-# 	•	The greatest decrease in losses (date and amount) over the entire period
 
