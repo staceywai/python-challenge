@@ -7,10 +7,10 @@ csvpath = os.path.join("PyBank","Resources","budgetdata.csv")
 
 # read in CSV
 with open(csvpath) as csvfile:
-    csvreader = csv.reader(csvfile, delimiter=",")
+    budgetdata = csv.reader(csvfile, delimiter=",")
 
     # Define the header 
-    csv_header = next(csvreader)
+    budgetdata_header = next(budgetdata)
 
 # define variables
     PL_old = 0
@@ -27,7 +27,7 @@ with open(csvpath) as csvfile:
     Greatest_Decrease_PL = 0
 
    # Read each row of data after the header
-    for row in csvreader:
+    for row in budgetdata:
     
         # read the value in each row
         month_count = month_count + 1
@@ -59,6 +59,6 @@ print(f"Average Change: $",round(PLchange_total/(month_count-1),2))
 print(f"Greatest Increase: ", Greatest_Increase_month, "($",Greatest_Increase_PL,")")
 print(f"Greatest Decrease in Profits: ", Greatest_Decrease_month, "($",Greatest_Decrease_PL,")")
 
-        
+    
 
 

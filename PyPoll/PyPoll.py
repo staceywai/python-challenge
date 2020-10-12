@@ -14,26 +14,34 @@ csvpath = os.path.join("PyPoll","Resources","electiondata.csv")
 
 # read in CSV
 with open(csvpath) as csvfile:
-    csvreader = csv.reader(csvfile, delimiter=",")
-    # print(csvreader)
+    electiondata = csv.reader(csvfile, delimiter=",")
+
     # Define the header 
-    csv_header = next(csvreader)
-    # print(csv_header)
+    electiondata_header = next(electiondata)
 
     # define variables
     total_votes = 0 
+    vote = 0
+    candidate_list = {}
 
    # Read each row of data after the header
-    for row in csvreader:
+    for row in electiondata:
         # read the value in each row
         total_votes += 1
+        # grab all candidate list
+        candidate = row[2]
+        if candidate not in candidate_list:
+            candidate_list.append(candidate)
+        else: candidate_list[candidate] +=1
+        print(candidate_list)
+        # if candidate_unique.get(row[2]):
+        #     candidate_unique[row[2]] +=1
+        # else: candidate_unique[row[2]] = 1
+    
 
 
-# with open(FILE TO LOAD) as electiondata.csv:
-#   reader = csv.reader(electiondata)
-#   discard the header row
-#   next(reader)
-
+# for candidate_name in all_candidates
+#     print(candidate_name.items())
 # define variables
 # total_votes = 0
 # all_candidates_with_duplication = []
