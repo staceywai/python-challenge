@@ -25,7 +25,6 @@ with open(csvpath) as csvfile:
     candidate_list = {}
     listofcandidates = []
 
-
    # Read each row of data after the header
     for row in electiondata:
         # read the value in each row
@@ -36,35 +35,33 @@ with open(csvpath) as csvfile:
             candidate_list.update({candidate:1})
             listofcandidates.append(candidate)
         else: candidate_list[candidate] +=1 
-    print(f'candidate:',candidate_list[candidate])
-    print(listofcandidates)
-    print(listofcandidates[0])
-    candidate_count = len(listofcandidates)
-    print(len(listofcandidates))
-
-
-#calculate values
-    # for candidate in candidate_list:
-    #     candidate_vote_total = candidate_list[candidate]
-    # print(f'candidate votes:', candidate_vote_total)
-    # candidate_percentage = candidate_vote_total/total_votes
-    # print(f'candidate percentage:', candidate_percentage)
-
-
-print('Election Results')
-print(f'Total Votes: ', total_votes)
-print('-------------------------')
-
-print_count = -1
-for x in listofcandidates:
+print(f'\n',
+'Election Results','\n',
+'Total Votes: ', total_votes,'\n',
+'-------------------------')
+#kv = keyvalue count
+kvcount = -1
+for row in listofcandidates:
     # define number of iterations of for loop
-    print_count += 1
-    print(f'',listofcandidates[print_count],":","{:0.2%}".format((candidate_list[listofcandidates[print_count]]/total_votes)),"(", candidate_list[listofcandidates[print_count]],")")
-    # listofcandidates[row],"{:0.2%}".format((candidate_list[listofcandidates[row]]/total_votes)), candidate_list[listofcandidates[row]])
-print('-------------------------')
-# print(f'Khan',"{:0.2%}".format((candidate_list['Khan']/total_votes)), candidate_list['Khan'])
-# print(f'Correy:', "{:0.2%}".format((candidate_list['Correy']/total_votes)), candidate_list['Correy'])
-# print(f'Li:', "{:0.2%}".format((candidate_list['Li']/total_votes)), candidate_list['Li'])
-# print(f'O Tooley:', "{:0.2%}".format((candidate_list["O'Tooley"]/total_votes)), candidate_list["O'Tooley"])
-# print('-------------------------')
-print(f'Winner:',max(candidate_list, key=candidate_list.get))
+    kvcount += 1
+    print(f'',listofcandidates[kvcount],':',
+    '{:0.2%}'.format((candidate_list[listofcandidates[kvcount]]/total_votes)),'(',
+    candidate_list[listofcandidates[kvcount]],')')
+print(f'-------------------------','\n',
+'Winner:',max(candidate_list, key=candidate_list.get))
+
+# output to txt file
+with open('ElectionResults.txt', 'w') as text_file:
+    print(f'\n',
+    'Election Results','\n',
+    'Total Votes: ', total_votes,'\n',
+    '-------------------------','\n')
+    kvcount = -1
+    for row in listofcandidates:
+        kvcount += 1
+        print(f'',listofcandidates[kvcount],':',
+        '{:0.2%}'.format((candidate_list[listofcandidates[kvcount]]/total_votes)),'(',
+        candidate_list[listofcandidates[kvcount]],')')
+    print(f'\n','-------------------------','\n',
+    'Winner:',max(candidate_list, key=candidate_list.get),'\n',
+    file=text_file)
