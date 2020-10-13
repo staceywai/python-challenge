@@ -34,7 +34,8 @@ with open(csvpath) as csvfile:
         if candidate not in candidate_list:
             candidate_list.update({candidate:1})
             listofcandidates.append(candidate)
-        else: candidate_list[candidate] +=1 
+        else: candidate_list[candidate] +=1
+
 print(f'\n',
 'Election Results','\n',
 'Total Votes: ', total_votes,'\n',
@@ -55,13 +56,15 @@ with open('ElectionResults.txt', 'w') as text_file:
     print(f'\n',
     'Election Results','\n',
     'Total Votes: ', total_votes,'\n',
-    '-------------------------','\n')
+    '-------------------------',
+    file=text_file)
     kvcount = -1
     for row in listofcandidates:
         kvcount += 1
         print(f'',listofcandidates[kvcount],':',
         '{:0.2%}'.format((candidate_list[listofcandidates[kvcount]]/total_votes)),'(',
-        candidate_list[listofcandidates[kvcount]],')')
-    print(f'\n','-------------------------','\n',
+        candidate_list[listofcandidates[kvcount]],')',
+        file=text_file)
+    print(f'-------------------------','\n',
     'Winner:',max(candidate_list, key=candidate_list.get),'\n',
     file=text_file)

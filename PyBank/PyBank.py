@@ -50,16 +50,7 @@ with open(csvpath) as csvfile:
             Greatest_Decrease_month = row[0]
             Greatest_Decrease_PL = PLchange_current
 
-# Print table summary
-# print("Financial Analysis")
-# print("------------------------------")
-# print(f"Total Months: ", month_count)
-# print(f"Total: $", total_value)
-# print(f"Average Change: $",round(PLchange_total/(month_count-1),2))
-# print(f"Greatest Increase: ", Greatest_Increase_month, "($",Greatest_Increase_PL,")")
-# print(f"Greatest Decrease in Profits: ", Greatest_Decrease_month, "($",Greatest_Decrease_PL,")")
-
-
+# Print summary in terminal
 print(f'\n',
 'Financial Analysis','\n',
 '------------------------------','\n',
